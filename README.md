@@ -1,0 +1,1 @@
+# Simple boilerplate to build pug site
