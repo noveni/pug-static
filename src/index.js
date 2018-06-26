@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import printMe from './print.js';
 import './scss/main.scss';
 
@@ -7,7 +6,7 @@ function component() {
   var btn = document.createElement('button');
 
   // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = 'Hello shit'
   element.classList.add('hello')
 
   btn.innerHTML = 'Click me and check the console!';
