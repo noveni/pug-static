@@ -1,0 +1,7 @@
+.hello {
+  color: Red;
+
+  &::placeholder {
+    color: Blue;
+  }
+}
