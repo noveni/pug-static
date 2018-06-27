@@ -23,14 +23,14 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             'css-loader',
             'postcss-loader',
             'sass-loader'
           ],
-        })
+        }))
       },
       {
         test: /\.pug$/,
