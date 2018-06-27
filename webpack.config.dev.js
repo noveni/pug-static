@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack')
 
@@ -22,6 +22,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'
+          ],
+        })
+      },
+      {
         test: /\.pug$/,
         use: [
           "html-loader",
@@ -34,15 +45,6 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
       }
     ]
   },
@@ -51,11 +53,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Output Management',
       template: './src/templates/index.pug',
+      filename: 'index.html'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css',
-      chunkFilename: '[id].css'
+    new ExtractTextPlugin({
+      filename: 'style.css'
     })
   ]
 }
